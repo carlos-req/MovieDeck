@@ -9,10 +9,16 @@ const search = document.getElementById("search");
 
 
 const getMovies = async url => {
-  const response = await fetch(url);
-  const responseData = await response.json();
-  showMovies(responseData.results);
-  
+  try{
+    const response = await fetch(url);
+    if(response.ok){
+      const responseData = await response.json();
+      showMovies(responseData.results);
+    }
+
+  }catch(error){
+    console.log('An Error Occured')
+  }
 };
 
 getMovies(apiUrl);
